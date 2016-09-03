@@ -1,8 +1,8 @@
 #include "hello.h"
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
-    std::string str = "Hello, World!!!";
+    const std::string str = "Hello, World!!!";
 
     hello(str);
 

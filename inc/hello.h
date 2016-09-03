@@ -3,6 +3,6 @@
 
 #include <iostream>
 
-void hello(const std::string & str);
+void hello(const std::string& str);
 
 #endif //_HELLO_H_
