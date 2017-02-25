@@ -1,35 +1,37 @@
-cmake_minimum_required(VERSION 3.5)
+# Сборочный файл для программы
 
-set ( PROJECT template )
+# Минимальная версия CMake
+cmake_minimum_required( VERSION 3.5 )
 
+# Используемый в исходном коде стандарт языка C++
 set ( CMAKE_CXX_STANDARD 14 )
 
 set ( CMAKE_CXX_STANDARD_REQUIRED on )
 
+# Устанавливаем флаги компилятора
 set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14" )
 
+# Устанавливаем флаги компилятора
 set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lstdc++" )
 
-#for debug
-set ( CMAKE_DEBUG_POSTFIX "_d" CACHE STRING "postfix applied to debug build of libraries" )
+# Устанавливаем значение переменной PROJECT
+set ( PROJECT template )
 
-#set ( CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g" )
-
-#for release
-#set ( CMAKE_RELEASE_POSTFIX "" CACHE STRING "postfix applied to release build of libraries" )
-
-#путь к исполнеямому файлу
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-
-set ( SOURCES ../src/main.cpp
-              ../src/hello.cpp)
-
+# Имя проекта
 project ( ${PROJECT} )
 
-include_directories ( ../inc )
+# Устанавливаем корневой путь к папке с исходниками программы.
+set( SOURCE_ROOT ../src )
 
-source_group  ( "Header Files" FILES ${HEADERS}  )
+# Собираем исходные файлы программы
+aux_source_directory( ${SOURCE_ROOT} SOURCES )
 
-source_group  ( "Source Files" FILES ${SOURCES}  )
+# Указываем пути, где искать заголовочники, дополнительно к стандартным путям.
+include_directories( "../inc/"
+        )
 
-add_executable( ${PROJECT} ${HEADRES} ${SOURCES} )
+# Указываем путь к исполнеямому файлу
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+
+# Собираем исполняемый файл с именем template.
+add_executable( ${PROJECT} ${SOURCES} )
