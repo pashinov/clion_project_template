@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-    const std::string str = "Hello, World!!!"; //
+    const std::string str = "Hello, World!!!";
 
     hello(str);
 
