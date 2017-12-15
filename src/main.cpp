@@ -1,12 +1,15 @@
-#include "hello.h"
+#include <iostream>
 
-// Test comment
+#include <swap.hpp>
 
 int main(int argc, char* argv[])
 {
-    const std::string str = "Hello, World!!!";
+    int a =10; int b =5;
 
-    hello(str);
+    cpp_project_template::swap(a, b);
+
+    std::cout << "a = " << a << std::endl;
+    std::cout << "b = " << b << std::endl;
 
     return 0;
 }
