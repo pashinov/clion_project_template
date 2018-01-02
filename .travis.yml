@@ -16,8 +16,8 @@ compiler:
 
 env:
     matrix:
-        - TARGET_CPU=amd64 BUILD_CONFIGURATION=Debug
-        - TARGET_CPU=amd64 BUILD_CONFIGURATION=Release
+        - BUILD_CONFIGURATION=Debug
+        - BUILD_CONFIGURATION=Release
 
 install:
     - bash ci/travis/install-linux.sh
