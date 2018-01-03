@@ -49,7 +49,7 @@ include_directories(
         ${GTEST_INCLUDE_DIRS}
 )
 add_executable( GoogleTestDemo gtest/swap.cpp )
-target_link_libraries( GoogleTestDemo gtest pthread gtest_main)
+target_link_libraries( GoogleTestDemo gtest pthread )
 
 enable_testing()
 add_test( GoogleTestDemo GoogleTestDemo )
