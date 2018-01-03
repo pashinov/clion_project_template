@@ -26,17 +26,34 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
 ################################
 # GTest
 ################################
-find_package( GTest REQUIRED )
-find_package( Threads REQUIRED )
+set(GOOGLETEST_ROOT external/googletest/googletest CACHE STRING "Google Test source root")
+
+include_directories(
+        ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}
+        ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/include
+)
+
+set(GOOGLETEST_SOURCES
+        ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/src/gtest-all.cc
+        ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/src/gtest_main.cc
+        )
+
+foreach(_source ${GOOGLETEST_SOURCES})
+    set_source_files_properties(${_source} PROPERTIES GENERATED 1)
+endforeach()
+
+add_library(gtest ${GOOGLETEST_SOURCES})
+
 include_directories(
         inc/swap
         ${GTEST_INCLUDE_DIRS}
 )
 add_executable( GoogleTestDemo gtest/swap.cpp )
-target_link_libraries( GoogleTestDemo ${GTEST_LIBRARIES} Threads::Threads gtest_main)
+target_link_libraries( GoogleTestDemo gtest pthread gtest_main)
 
 enable_testing()
 add_test( GoogleTestDemo GoogleTestDemo )
+################################
 
 # location of header files
 include_directories(
