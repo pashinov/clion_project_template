@@ -23,8 +23,25 @@ set( VERSION_MINOR 0 )
 # output folder for binaries
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
 
+################################
+# GTest
+################################
+find_package( GTest REQUIRED )
+find_package( Threads REQUIRED )
+include_directories(
+        inc/swap
+        ${GTEST_INCLUDE_DIRS}
+)
+add_executable( GoogleTestDemo gtest/swap.cpp )
+target_link_libraries( GoogleTestDemo ${GTEST_LIBRARIES} Threads::Threads gtest_main)
+
+enable_testing()
+add_test( GoogleTestDemo GoogleTestDemo )
+
 # location of header files
-include_directories( "inc" )
+include_directories(
+        inc/swap
+)
 
 # location of source files
 aux_source_directory( src SOURCES )
