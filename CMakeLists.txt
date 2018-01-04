@@ -51,9 +51,21 @@ include_directories(
 add_executable( GoogleTestDemo gtest/swap.cpp )
 target_link_libraries( GoogleTestDemo gtest pthread )
 
-enable_testing()
-add_test( GoogleTestDemo GoogleTestDemo )
+#include( CTest )
+#enable_testing()
+#add_test( GoogleTestDemo GoogleTestDemo )
 ################################
+
+################################
+# Code Coverage
+################################
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
+include(CodeCoverage)
+setup_target_for_coverage(${PROJECT_NAME}_coverage ${PROJECT_NAME} coverage)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage")
+###############################
 
 # location of header files
 include_directories(
@@ -68,6 +80,8 @@ add_executable( ${PROJECT_NAME} ${SOURCES} )
 
 # link process
 target_link_libraries( ${PROJECT_NAME} )
+
+add_test( ex_test ${PROJECT_NAME} )
 
 # install target
 set( CMAKE_INSTALL_PREFIX /usr/local )
