@@ -60,7 +60,7 @@ include_directories(
         inc/swap
         ${GTEST_INCLUDE_DIRS}
 )
-add_executable( GoogleTestDemo gtest/swap.cpp )
+add_executable( GoogleTestDemo tests/swap.cpp )
 target_link_libraries( GoogleTestDemo gtest pthread )
 
 enable_testing()
