@@ -6,6 +6,7 @@ cpp project template
 
 [![Build Status][travis-badge]][travis-link]
 [![codecov][codecov-badge]][codecov-link]
+[![release][release-badge]][release-link]
 [![MIT License][license-badge]][license-link]
 
 [travis-badge]:    https://travis-ci.org/pashinov/cpp_project_template.svg?branch=master
@@ -14,5 +15,7 @@ cpp project template
 [codecov-badge]:   https://codecov.io/gh/pashinov/cpp_project_template/branch/master/graph/badge.svg
 [codecov-link]:    https://codecov.io/gh/pashinov/cpp_project_template
 [codecov-image]:   https://github.com/pashinov/cpp_project_template/blob/master/img/Codecov.png
+[release-badge]:   https://img.shields.io/badge/release-v1.0.0-blue.svg
+[release-link]:    https://github.com/pashinov/cpp_project_template/releases
 [license-badge]:   https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]:    https://github.com/pashinov/cpp_project_template/blob/master/LICENSE
