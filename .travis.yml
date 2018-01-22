@@ -4,31 +4,68 @@
 #
 #...............................................................................
 
-dist:     trusty
 sudo:     required
+dist:     trusty
 language: cpp
 
-os:
-    - linux
+os: linux
 
-compiler:
-    - gcc
+matrix:
+  include:
 
-env:
-    matrix:
-        - BUILD_CONFIGURATION=Debug
-        - BUILD_CONFIGURATION=Release
+    ##########################################################################
+    # GCC on Linux
+    ##########################################################################
+
+    # GCC 6
+    - env: C_COMPILER=gcc-6 CXX_COMPILER=g++-6 BUILD_TYPE=Debug
+      compiler: gcc
+      addons: &gcc6
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+            - g++-6
+            - libboost-all-dev
+            - lcov
+
+    - env: C_COMPILER=gcc-6 CXX_COMPILER=g++-6 BUILD_TYPE=Release
+      compiler: gcc
+      addons: *gcc6
+
+    ##########################################################################
+    # Clang on Linux
+    ##########################################################################
+
+    # Clang 5.0
+    - env: C_COMPILER=clang-5.0 CXX_COMPILER=clang++-5.0 BUILD_TYPE=Debug
+      compiler: clang
+      addons: &clang50
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - gcc-6
+            - g++-6
+            - clang-5.0
+            - libboost-all-dev
+            - lcov
+
+    - env: C_COMPILER=clang-5.0 CXX_COMPILER=clang++-5.0 BUILD_TYPE=Release
+      compiler: clang
+      addons: *clang50
+
 
 before_install:
-    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-    - sudo apt-get update -qq
-
-install:
-    - sudo apt-get install -qq g++-6
     - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 90
     - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-    - sudo apt-get install -qq lcov
+
+
+install:
     - bash ci/travis/install-linux.sh
+
 
 script:
     - mkdir build
@@ -37,6 +74,7 @@ script:
     - make
     - popd
     - ./GoogleTestDemo
+
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)

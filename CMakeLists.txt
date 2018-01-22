@@ -4,17 +4,23 @@
 cmake_minimum_required( VERSION 3.7.2 FATAL_ERROR)
 
 # choice of standard
-set_target_properties( ${TARGET} PROPERTIES
-        CXX_STANDARD 17
-        CXX_STANDARD_REQUIRED YES
-        CXX_EXTENSIONS NO
-        )
+set( CMAKE_CXX_STANDARD 17 )
+set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_CXX_EXTENSIONS OFF )
 
 # project variable
 set ( PROJECT_NAME cpp_project_template )
 
 # project name
 project ( ${PROJECT_NAME} )
+
+# set c++ compiler flags for GNU
+if( CMAKE_CXX_COMPILER_ID MATCHES GNU )
+    set( CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused" )
+    set( CMAKE_CXX_FLAGS_DEBUG   "-O0 -g3" )
+    set( CMAKE_CXX_FLAGS_RELEASE "-O3" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
+endif()
 
 # project version
 set( VERSION_MAJOR 1 )
@@ -30,8 +36,6 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include(CodeCoverage)
 setup_target_for_coverage(${PROJECT_NAME}_coverage ${PROJECT_NAME} coverage)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage")
 ###############################
 
 
