@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[])
 {
-    std::string str1 = "Hello"; std::string str2 = "World";
+    auto str1 = "Hello"; auto str2 = "World";
 
     cpp_project_template::swap(str1, str2);
 
