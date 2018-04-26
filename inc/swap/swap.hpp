@@ -4,8 +4,8 @@
  * Description: Swap function
 */
 
-#ifndef SWAP_H_
-#define SWAP_H_
+#ifndef SWAP_HPP_
+#define SWAP_HPP_
 
 #include <tuple>
 
@@ -18,4 +18,4 @@ namespace cpp_project_template
     }
 }
 
-#endif //SWAP_H_
+#endif //SWAP_HPP_

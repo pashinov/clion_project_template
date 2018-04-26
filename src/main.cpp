@@ -1,14 +1,27 @@
 #include <iostream>
+#include <functional>
 
 #include <swap.hpp>
 
+
+template<typename T>
+void handler(T& a, T& b, std::function<void(T&, T&)> callback)
+{
+    callback(a, b);
+}
+
 int main(int argc, char* argv[])
 {
-    auto str1 = "Hello"; auto str2 = "World";
+    std::string str1 = "World!!!"; std::string str2 = "Hello, ";
 
-    cpp_project_template::swap(str1, str2);
+    std::function<void(std::string&, std::string&)> callback = std::bind(
+            &cpp_project_template::swap<std::string>,
+            std::placeholders::_1,
+            std::placeholders::_2);
 
-    std::cout << str2 << ", " << str1 << "!!!" << std::endl;
+    handler<std::string>(str1, str2, callback);
+
+    std::cout << str1 << str2 << std::endl;
 
     return 0;
 }
