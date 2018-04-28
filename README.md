@@ -15,7 +15,7 @@ cpp project template
 [codecov-badge]:   https://codecov.io/gh/pashinov/cpp_project_template/branch/master/graph/badge.svg
 [codecov-link]:    https://codecov.io/gh/pashinov/cpp_project_template
 [codecov-image]:   https://github.com/pashinov/cpp_project_template/blob/master/img/Codecov.png
-[release-badge]:   https://img.shields.io/badge/release-v1.0.0-blue.svg
+[release-badge]:   https://img.shields.io/badge/release-v1.0.1-blue.svg
 [release-link]:    https://github.com/pashinov/cpp_project_template/releases
 [license-badge]:   https://img.shields.io/badge/License-MIT-yellow.svg
 [license-link]:    https://github.com/pashinov/cpp_project_template/blob/master/LICENSE
