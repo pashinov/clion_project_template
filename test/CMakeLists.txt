@@ -37,6 +37,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
     set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
     include(CodeCoverage)
     APPEND_COVERAGE_COMPILER_FLAGS()
-    setup_target_for_coverage(NAME test_swap_coverage EXECUTABLE test_swap)
+    setup_target_for_coverage(NAME coverage EXECUTABLE test_swap)
 endif()
 #----------------------------------------------------------
