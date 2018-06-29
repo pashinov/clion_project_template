@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <swap.hpp>
+#include <swap/swap.hpp>
 
 TEST(BasicTest, SwapTest) {
     std::string str1 = "Hello"; std::string str2 = "World";

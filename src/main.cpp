@@ -1,7 +1,7 @@
 #include <iostream>
 #include <functional>
 
-#include <swap.hpp>
+#include <swap/swap.hpp>
 
 
 template<typename T>
