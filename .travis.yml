@@ -74,9 +74,11 @@ script:
   - cmake .. -DCMAKE_C_COMPILER=$C_COMPILER -DCMAKE_CXX_COMPILER=$CXX_COMPILER -DCMAKE_BUILD_TYPE=$BUILD_TYPE
   - make
   - if [ "$BUILD_TYPE" == "Coverage" ]; then
+      pwd;
       make test_swap_coverage;
     fi
-  - if [ "WITH_TEST" == "ON" ]; then
+  - if [ "$WITH_TEST" == "ON" ]; then
+      pwd;
       make test;
     fi
   - popd
