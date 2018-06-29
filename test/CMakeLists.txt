@@ -1,15 +1,4 @@
 #----------------------------------------------------------
-# Code Coverage
-#----------------------------------------------------------
-if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-    include(CodeCoverage)
-    setup_target_for_coverage(cpp_project_template_coverage cpp_project_template coverage)
-endif()
-#----------------------------------------------------------
-
-
-#----------------------------------------------------------
 # GTest
 #----------------------------------------------------------
 set(GOOGLETEST_ROOT external/googletest/googletest CACHE STRING "Google Test source root")
@@ -38,4 +27,16 @@ add_executable(test_swap ${CMAKE_CURRENT_SOURCE_DIR}/test_swap.cpp)
 target_link_libraries(test_swap gtest pthread)
 
 add_test(test_swap test_swap)
+#----------------------------------------------------------
+
+
+#----------------------------------------------------------
+# Code Coverage
+#----------------------------------------------------------
+if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
+    set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+    include(CodeCoverage)
+    APPEND_COVERAGE_COMPILER_FLAGS()
+    setup_target_for_coverage(NAME test_swap_coverage EXECUTABLE test_swap)
+endif()
 #----------------------------------------------------------
