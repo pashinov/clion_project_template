@@ -40,7 +40,7 @@ matrix:
     ##########################################################################
 
     # Clang 5.0
-    - env: C_COMPILER=clang-5.0 CXX_COMPILER=clang++-5.0 BUILD_TYPE=Coverage WITH_TESTS=ON
+    - env: C_COMPILER=clang-5.0 CXX_COMPILER=clang++-5.0 WITH_TESTS=ON
       compiler: clang
       addons: &clang50
         apt:
