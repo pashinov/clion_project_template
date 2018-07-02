@@ -76,13 +76,13 @@ script:
   - if [ $WITH_TESTS == "ON" ]; then
       make test;
     fi
-  - if [ $C_COMPILER == "gcc-6" && $CXX_COMPILER == "g++-6" ]; then
+  - if [ $C_COMPILER == "gcc-6" ] && [ $CXX_COMPILER == "g++-6" ]; then
       make coverage;
     fi
   - popd
 
 
 after_success:
-  - if [ $BUILD_TYPE == "Debug" && $WITH_TESTS == "ON" && $C_COMPILER == "gcc-6" && $CXX_COMPILER == "g++-6"]; then
+  - if [ $BUILD_TYPE == "Debug" ] && [ $WITH_TESTS == "ON" ] && [ $C_COMPILER == "gcc-6" ] && [ $CXX_COMPILER == "g++-6" ]; then
       bash <(curl -s https://codecov.io/bash);
     fi
