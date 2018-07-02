@@ -33,7 +33,7 @@ add_test(test_swap test_swap)
 #----------------------------------------------------------
 # Code Coverage
 #----------------------------------------------------------
-if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
+if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
     include(CodeCoverage)
     APPEND_COVERAGE_COMPILER_FLAGS()
