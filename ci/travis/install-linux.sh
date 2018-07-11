@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # manually install CMake 3.7.2
 CMAKE_VERSION=3.7.2
 CMAKE_VERSION_DIR=v3.7

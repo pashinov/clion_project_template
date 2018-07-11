@@ -22,11 +22,15 @@ include_directories(
         ${GTEST_INCLUDE_DIRS}
         ${PROJECT_SOURCE_DIR}/include)
 
-add_executable(test_swap ${CMAKE_CURRENT_SOURCE_DIR}/test_swap.cpp)
+set(TEST_SRC_FILES
+        test_swap.cpp
+        )
 
-target_link_libraries(test_swap gtest pthread)
+add_executable(tests ${TEST_SRC_FILES} ${HDR_FILES})
 
-add_test(test_swap test_swap)
+target_link_libraries(tests gtest pthread)
+
+add_test(tests tests)
 #----------------------------------------------------------
 
 
@@ -37,6 +41,6 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
     include(CodeCoverage)
     APPEND_COVERAGE_COMPILER_FLAGS()
-    setup_target_for_coverage(NAME coverage EXECUTABLE test_swap)
+    setup_target_for_coverage(NAME coverage EXECUTABLE tests)
 endif()
 #----------------------------------------------------------

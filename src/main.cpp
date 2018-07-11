@@ -1,14 +1,8 @@
 #include <iostream>
 #include <functional>
 
-#include <swap/swap.hpp>
-
-
-template<typename T>
-void handler(T& a, T& b, std::function<void(T&, T&)> callback)
-{
-    callback(a, b);
-}
+#include "handler.hpp"
+#include "swap.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -19,7 +13,7 @@ int main(int argc, char* argv[])
             std::placeholders::_1,
             std::placeholders::_2);
 
-    handler<std::string>(str1, str2, callback);
+    cpp_project_template::handler<std::string>(str1, str2, callback);
 
     std::cout << str1 << str2 << std::endl;
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(cpp_project_template VERSION 1.0.2)
+project(cpp-project-template VERSION 1.0.2)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -37,16 +37,17 @@ endif()
 
 
 set(HDR_FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/swap/swap.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/handler.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/swap.hpp
         )
 
-set(SRC_FILES
+set(SRC_MAIN_FILE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
         )
 
 include_directories(include)
 
-add_executable(cpp_project_template ${SRC_FILES} ${SRC_MAIN_FILES} ${HDR_FILES})
+add_executable(cpp-project-template ${SRC_MAIN_FILE} ${HDR_FILES})
 
 if(WITH_TESTS)
     enable_testing()
