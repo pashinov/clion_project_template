@@ -1,9 +1,6 @@
 cpp project template
 --------------------
 
-[![Travis CI logo][travis-image]][travis-link]
-[![Codecov logo][codecov-image]][codecov-link]
-
 [![Build Status][travis-badge]][travis-link]
 [![codecov][codecov-badge]][codecov-link]
 [![release][release-badge]][release-link]
