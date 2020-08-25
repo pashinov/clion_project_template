@@ -1,0 +1,53 @@
+version: 2.0
+jobs:
+  build:
+    working_directory: ~/project
+    docker:
+      - image: "debian:stretch"
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Installing GCC
+          command: 'apt-get update && apt-get install -y gcc g++'
+      - run:
+          name: Install CMAKE
+          command: 'apt-get update && apt-get install -y cmake'
+      - run:
+          name: Creating Build Files
+          command: 'cmake -H. -Bbuild'
+      - run:
+          name: Creating Binary Files
+          command: 'cmake --build build'
+      - run:
+          name: Creating Artifacts
+          command: 'tar -C build -czf artifacts.tar.gz cpp-project-template && mkdir artifacts && mv artifacts.tar.gz artifacts/'
+      - persist_to_workspace:
+          root: ~/project
+          paths: ./artifacts
+  publish-github-release:
+    working_directory: ~/project
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: pwd && ls ~/project
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            VERSION=release-1.0.2
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - publish-github-release:
+          requires:
+            - build
+          filters:
+            branches:
+              only: /^release-\d+\.\d+\.\d+$/
